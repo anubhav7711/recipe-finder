@@ -1,0 +1,42 @@
+<head>
+    <link rel="stylesheet" href="login.css">
+</head>
+<form id="login-form">
+    <h2>Login to Your Account</h2>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" placeholder="Enter your email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+    <button type="submit">Login</button>
+</form>
+
+<script>
+document.getElementById('login-form').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+        alert('Login successful!');
+        // Optionally, store the token
+        localStorage.setItem('token', data.data.token);
+        // Redirect to another page
+        window.location.href = 'index.html';
+    } else {
+        alert(data.message || 'Login failed. Please check your credentials.');
+    }
+});
+</script>
