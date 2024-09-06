@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBar = document.getElementById('search-bar');
     const resultsDiv = document.getElementById('results');
 
-    console.log('Elements:', { searchButton, searchBar, resultsDiv });  // Debugging line
+    console.log('Elements:', { searchButton, searchBar, resultsDiv });  
 
     if (searchButton && searchBar && resultsDiv) {
         searchButton.addEventListener('click', () => {
